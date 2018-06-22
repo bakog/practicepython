@@ -107,3 +107,17 @@ print(title)
 for t in title:
     if t.a:
         print(t.a.text)
+
+print("*"*20+" www.index.hu  cikkei "+"*"*20)
+
+url="http://www.index.hu"
+r = requests.get(url)
+r_source=r.text
+
+soup =BeautifulSoup(r_source, "lxml")
+#title = soup.find_all(["h1","h2"], class_="story-heading")
+title = soup.find_all("h1", class_="cikkcim")
+print(title)
+for t in title:
+    if t.a:
+        print(t.a.text)

@@ -41,3 +41,46 @@ The main topic of this exercise is functions. They are tricky,
 
 There are hundreds more out there - read and practice away!
 """
+def oddrow(w):
+    for i in range(w):
+        print(" ---",end="")
+    print()
+
+def evenrow(w):
+    for i in range(w+1):
+        print("|   ", end="")
+    print()
+
+def drawtable(h,w):
+    for i in range(h):
+        oddrow(w)
+        evenrow(w)
+    oddrow(w)
+
+print("""
+Mekkora legyen a játéktér?
+
+1. 3X3 mező (alapértelmezett)
+2. 5X5 mező
+3. 8X8 mező
+
+Válassz! 1-3 közül [1]
+""")
+h=3
+w=3
+try:
+    meret=input()
+except:
+    print("Nem jó számot adott meg, az alapértelmezett pályaméret lesz érvényes.")
+    meret=1
+
+if meret==2:
+    h=5
+    w=5
+    drawtable(h,w)
+elif meret==3:
+    h=8
+    w=8
+    drawtable(h,w)
+else:
+    drawtable(h, w)

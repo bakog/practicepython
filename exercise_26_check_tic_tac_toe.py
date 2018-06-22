@@ -13,9 +13,11 @@ Today, we will simply focus on checking whether someone has WON a game of Tic Ta
 
 If a game of Tic Tac Toe is represented as a list of lists, like so:
 
-game = [[1, 2, 0],
+game = [
+    [1, 2, 0],
 	[2, 1, 0],
-	[2, 1, 1]]
+	[2, 1, 1]
+	]
 
 where a 0 means an empty square, a 1 means that player 1 put their token in that space,
 and a 2 means that player 2 put their token in that space.
@@ -27,23 +29,28 @@ Your task this week: given a 3 by 3 list of lists that represents a Tic Tac Toe 
 
 Here are some more examples to work with:
 
-winner_is_2 = [[2, 2, 0],
+winner_is_2 = [
+    [2, 2, 0],
 	[2, 1, 0],
 	[2, 1, 1]]
 
-winner_is_1 = [[1, 2, 0],
+winner_is_1 = [
+    [1, 2, 0],
 	[2, 1, 0],
 	[2, 1, 1]]
 
-winner_is_also_1 = [[0, 1, 0],
+winner_is_also_1 = [
+    [0, 1, 0],
 	[2, 1, 0],
 	[2, 1, 1]]
 
-no_winner = [[1, 2, 0],
+no_winner = [
+    [1, 2, 0],
 	[2, 1, 0],
 	[2, 1, 2]]
 
-also_no_winner = [[1, 2, 0],
+also_no_winner = [
+    [1, 2, 0],
 	[2, 1, 0],
 	[2, 1, 0]]
 
@@ -79,3 +86,38 @@ The cool part is that you can use double-indexing to read the elements
  from our list of lists matrix! By indexing matrix[0][1] we are saying give me
   the 1st element of the 0th element of matrix, which in this case is 2.
 """
+
+def check_rows(m):
+    for rownum in range(len(m)):
+        if m[rownum][0]!=0 and m[rownum][0]==m[rownum][1]==m[rownum][2]:
+            return m[rownum][0]
+
+    return 0
+
+def check_cols(m):
+    for colnum in range(len(m)):
+        if m[0][colnum]!=0 and m[0][colnum]==m[1][colnum]==m[2][colnum]:
+            return m[0][colnum]
+
+    return 0
+
+def check_diag1(m):
+    if m[0][0]!=0 and m[0][0]==m[1][1]==m[2][2]:
+        return m[0][0]
+    return 0
+
+def check_diag2(m):
+    if m[0][2]!=0 and m[0][2]==m[1][1]==m[2][0]:
+        return m[0][2]
+    return 0
+
+m= [
+    [1, 0, 0],
+	[2, 2, 0],
+	[2, 1, 1]]
+
+#print(len(m))
+print(check_rows(m))
+print(check_cols(m))
+print(check_diag1(m))
+print(check_diag2(m))

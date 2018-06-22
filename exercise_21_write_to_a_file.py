@@ -95,3 +95,32 @@ This all seems simple enough, but there are a few caveats to the file-writing en
 
 The best way to remember the caveats is to explore them yourself, so have at it!
 """
+import requests
+from bs4 import BeautifulSoup
+import datetime
+
+now=datetime.datetime.today()
+
+
+print("*"*20, " www.index.hu  cikkei (",now.date(),") ","*"*20)
+#print (now.date())
+
+url="http://www.index.hu"
+r = requests.get(url)
+r_source=r.text
+
+soup =BeautifulSoup(r_source, "lxml")
+#title = soup.find_all(["h1","h2"], class_="story-heading")
+title = soup.find_all("h1", class_="cikkcim")
+
+s = ("www.index.hu  cikkei (",str(now.date()),")")
+string = " ".join(s)
+with open("exercise_21_out.txt", "w") as f:
+
+    f.write(string)
+    f.write("\n\n")
+
+    for t in title:
+        if t.a:
+            f.write(t.a.text)
+            f.write("\n")

@@ -29,3 +29,28 @@ look at the detailed solution to the previous exercise for a very detailed expla
     to click on elements of the page and look at their properties.
 
 """
+
+import requests
+from bs4 import BeautifulSoup
+import sys
+
+url = "http://www.vanityfair.com/society/2014/06/monica-lewinsky-humiliation-culture"
+page = requests.get(url)
+soup = BeautifulSoup(page.content,"lxml")
+
+#print(soup.prettify())
+
+#szűrés a teljes szöveget tartalmazó div-re
+c1=soup.find("div", class_="content paywall drop-cap")
+#print (c1)
+
+#szűrés az egyes szekciókra, melyek a bekezdéseket tartalmazzák
+c2=c1.find_all("section", class_="content-section")
+#print (c2)
+
+
+for c in c2:
+    bekezdes=c.find_all("p")
+    for b in bekezdes:
+        print (b.get_text())
+

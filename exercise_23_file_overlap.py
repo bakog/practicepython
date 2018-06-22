@@ -23,3 +23,24 @@ Topics:
     Lists, in Exercise 3 and Exercise 5
 
 """
+primenumbers = []
+happynumbers = []
+happyprimenumbers = []
+
+with open("primenumbers.txt", "r") as file1:
+    for sor in file1:
+        szam=sor.split("\n")[0]
+        primenumbers.append(int(szam))
+
+with open("happynumbers.txt", "r") as file2:
+    for sor in file2:
+        szam=sor.split("\n")[0]
+        happynumbers.append(int(szam))
+
+for i in happynumbers:
+    if i in primenumbers:
+        happyprimenumbers.append(i)
+
+
+print("{} db. olyan szám van, ami mind a két fájlban szerepel.".format(len(happyprimenumbers)))
+print("Ezek a következő számok: ", happyprimenumbers)

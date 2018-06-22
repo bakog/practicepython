@@ -90,4 +90,51 @@ And this prints out pairs of keys and values that look like: (Adama, 100), etc.
 
 Because dictionaries are not ordered, looping through them does not guarantee the key / value
 pairs coming out in a particular order. So be careful.
+
+
+
+
 """
+import sys
+
+with open("nameslist.txt", "r") as file_in:
+    #sor = file_in.readline()
+    nevek = set()
+    adatok = {}
+    for sor in file_in:
+        #print (sor)
+        adat = sor.split("\n")
+        nevek.add(adat[0])
+        if adatok.get(adat[0]):
+            adatok[adat[0]]+=1
+        else:
+            adatok[adat[0]]=1
+
+print("Ennyi név van: {}".format(len(nevek)))
+print (nevek)
+
+for k, v in adatok.items():
+    print ("A {} név ennyiszer szerepelt a fájlban: {}".format(k.upper(), v))
+
+
+#sys.exit(0)
+
+with open("exercise_22_in.txt", "r") as file_in:
+    #sor = file_in.readline()
+    nevek = set()
+    adatok = {}
+    for sor in file_in:
+        #print (sor)
+        adat= sor.split("/")
+        #print(adat)
+        nevek.add(adat[2])
+        if adatok.get(adat[2]):
+            adatok[adat[2]]+=1
+        else:
+            adatok[adat[2]]=1
+
+print("Ennyi elem van: {}".format(len(nevek)))
+print (nevek)
+
+for k, v in adatok.items():
+    print ("{} elemhez  {} kép tartozik".format(k.upper(), v))

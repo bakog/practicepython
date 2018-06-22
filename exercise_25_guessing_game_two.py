@@ -26,3 +26,42 @@ You can refer to this exercise on user input, this one on rock paper scissors, a
 If you want to implement the optimal solution without thinking about it first,
 you can read this Wikipedia article on binary search.
 """
+
+def kisebb_vagy_nagyobb(tipp, prev_tipp):
+    print("Én a {} számra tippelek.\n".format(tipp))
+    print("""
+    Válassz a következők közül:
+    
+    1. Az általad gondolt szám az én tippemnél kisebb...
+    2. Az általad gondolt szám az én tippemnél nagyobb...
+    3. Eltaláltam a számot :-)
+    
+    """)
+    valasz = input()
+    if valasz =='1':
+        k=abs(tipp-prev_tipp)//2
+        next_tipp=tipp-k
+    elif valasz=="2":
+        k=abs((tipp-prev_tipp)//2)
+        next_tipp= tipp+k
+    else:
+        next_tipp=-1
+    return next_tipp
+
+
+print("""
+Gondolj egy számra 1-100 között és én megpróbálom kitalálni...
+""")
+tippszam= 0
+hibas_tipp = True
+tipp=50
+prevtipp=100
+while True:
+    tippszam+=1
+    tmp=tipp
+    tipp=kisebb_vagy_nagyobb(tipp,prevtipp)
+    prevtipp=tmp
+    if tipp==-1:
+        break
+
+print("{} tippból sikerült kitalálnom a számot ({})".format(tippszam, prevtipp))

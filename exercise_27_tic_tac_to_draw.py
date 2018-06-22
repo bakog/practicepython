@@ -84,3 +84,47 @@ Instead, there are two string manipulation functions that will help you:
 
 I challenge you to figure out how to use them in the exercise!
 """
+
+m = [
+    [0,0,0],
+    [0,0,0],
+    [0,0,0]
+]
+
+
+def game_is_over():
+    for r in m:
+        for e in r:
+            if e==0:
+                return False
+    return True
+
+def step_is_valid(x,y,player):
+    szamok = [x+1 for x in range(len(m)) ]
+    #print(szamok)
+    if x in szamok and y in szamok and m[x-1][y-1]==0:
+        m[x-1][y-1]=player
+        return True
+    return False
+
+
+playernum = 1
+while not game_is_over():
+    for r in m:
+        print(r)
+
+
+    while True:
+        p = input("{}. Játékos: Hova akarsz lépni? pl. 1,0  ".format(playernum))
+        p_r=int(p.split(",")[0])
+        p_c=int(p.split(",")[1])
+        if step_is_valid(p_r, p_c, playernum):
+            break
+    if playernum==1:
+        playernum+=1
+    else:
+        playernum-=1
+
+print("A játéknak vége, nincs több üres mező!\n Az eredmény DÖNTETLEN! ")
+for r in m:
+    print(r)
